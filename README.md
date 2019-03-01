@@ -17,7 +17,7 @@ from nart.out.builtins.outcsvrepository import OutCsvRepository
 
 outrepos = [OutCsvRepository(outpath='/tmp/test.csv')]
 nart = Nart(outrepos)
-nart.write_nart_to_repos
+nart.write_nart_to_repos()
 nart.run_with_hour(interval=1)
 
 ```
