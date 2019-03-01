@@ -15,7 +15,7 @@ foo@bar:~$ pip install --upgrade nart
 from nart.nart import Nart
 from nart.out.builtins.outcsvrepository import OutCsvRepository
 
-outrepos = [OutCsvRepository(outrepos='/tmp/test.csv')]
+outrepos = [OutCsvRepository(outpath='/tmp/test.csv')]
 nart = Nart(outrepos)
 
 ```
