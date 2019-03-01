@@ -3,7 +3,7 @@
 [![PyPI pyversions](https://img.shields.io/pypi/pyversions/ansicolortags.svg)](https://pypi.org/project/nart/)
 [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
 
-NART: Naver RealTime keywords
+NART: NAver RealTime keywords
 
 # Install
 ```console
