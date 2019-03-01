@@ -1,0 +1,5 @@
+requests==2.21.0
+beautifulsoup4==4.7.1
+schedule==0.6.0
+pytest==4.3
+pytest-runner=4.4

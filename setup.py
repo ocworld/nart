@@ -11,6 +11,13 @@ setup(
     url='https://github.com/ocworld/nart',
     packages=find_packages(exclude=('tests', 'docs')),
     platforms=['any'],
+    install_requires=[
+        'requests==2.21.0',
+        'schedule==0.6.0',
+        'beautifulsoup4==4.7.1',
+        'python-crontab==2.3.6',
+        'schedule==0.6.0',
+    ],
     setup_requires=[
         'pytest-runner==4.4',
     ],
@@ -18,7 +25,7 @@ setup(
         'pytest==4.2',
     ],
     entry_points={
-        'console_scripts': ['nart=nart.nart:main'],
+        'console_scripts': ['nart=nart.main:main'],
     },
     classifiers={
         'Programming Language :: Python',
