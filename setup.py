@@ -38,7 +38,7 @@ setup(
         'Intended Audience :: Information Technology',
         'Intended Audience :: Science/Research',
         'Topic :: Software Development :: Libraries :: Python Modules',
-        'Topic :: Office/Business :: News/Diary'
+        'Topic :: Office/Business :: News/Diary',
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7'

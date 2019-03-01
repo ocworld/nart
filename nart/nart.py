@@ -43,7 +43,7 @@ class Nart:
 
         while True:
             schedule.run_pending()
-            time.sleep(1000)
+            time.sleep(1)
 
     def run_with_min(self, interval=1, start_on_the_min=False):
         """
@@ -59,7 +59,7 @@ class Nart:
 
         while True:
             schedule.run_pending()
-            time.sleep(1000)
+            time.sleep(1)
 
     def run_with_sec(self, interval=1):
         """
@@ -72,4 +72,4 @@ class Nart:
 
         while True:
             schedule.run_pending()
-            time.sleep(100)
+            time.sleep(0.1)
