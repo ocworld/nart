@@ -23,6 +23,6 @@ class HtmlParseDataSource(DataSource):
         html = requests.get('https://www.naver.com/').text
         soup = BeautifulSoup(html, 'html.parser')
         rt_keyword_tags = soup.select('.PM_CL_realtimeKeyword_rolling span[class*=ah_k]')
-        rt_keywords = [NartKeyword(rank=idx, keyword=keyword) for idx, keyword in enumerate(rt_keyword_tags)]
+        rt_keywords = [NartKeyword(rank=idx, keyword=keyword.text) for idx, keyword in enumerate(rt_keyword_tags)]
         return NartKeywords(datetime.now(), rt_keywords)
 
