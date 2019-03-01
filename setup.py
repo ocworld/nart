@@ -2,13 +2,21 @@
 
 from setuptools import setup, find_packages
 
+with open('README.md', mode='r', encoding='utf-8') as f:
+    readme = f.read()
+
+with open('LICENSE', mode='r', encoding='utf-8') as f:
+    license_text = f.read()
+
 setup(
     name='nart',
     version='1.0',
     description='NART: Naver RealTime Keyword',
+    long_description=readme,
     author='Keunhyun Oh',
     author_email='ocworld@gmail.com',
     url='https://github.com/ocworld/nart',
+    license=license_text,
     packages=find_packages(exclude=('tests', 'docs')),
     platforms=['any'],
     install_requires=[
