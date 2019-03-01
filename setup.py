@@ -22,7 +22,7 @@ setup(
         'pytest-runner==4.4',
     ],
     tests_require=[
-        'pytest==4.2',
+        'pytest==4.3.0',
     ],
     entry_points={
         'console_scripts': ['nart=nart.main:main'],
