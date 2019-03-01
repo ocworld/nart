@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='nart',
-    version='1.0.dev1',
+    version='1.0.dev2',
     description='NART: Naver RealTime Keyword',
     author='Keunhyun Oh',
     author_email='ocworld@gmail.com',
