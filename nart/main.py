@@ -3,9 +3,9 @@
 
 import argparse
 from nart.nart import Nart
-from nart.out.outrepository import OutRepository
-from nart.out.builtins.outstdoutrepository import OutStdoutRepository
-from nart.out.builtins.outcsvrepository import OutCsvRepository
+from nart.writer.writer import Writer
+from nart.writer.builtins.stdoutwriter import StdOutWriter
+from nart.writer.builtins.csvwriter import CSVWriter
 from nart.datasource.builtins.htmlparsedatasource import HtmlParseDataSource
 
 
@@ -23,12 +23,12 @@ def main():
 
     args = parser.parse_args()
 
-    outrepos: [OutRepository] = []
+    outrepos: [Writer] = []
     if args.verbose:
-        outrepos.append(OutStdoutRepository())
+        outrepos.append(StdOutWriter())
 
     if args.csvout:
-        outrepos.append(OutCsvRepository(outpath=args.csvout))
+        outrepos.append(CSVWriter(path=args.csvout))
 
     assert len(outrepos) > 0
 

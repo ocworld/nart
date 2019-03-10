@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import abc
-from nart.model.nartkeywords import NartKeywords
+from nart.model.nartdata import NartData
 
 
 class DataSource(metaclass=abc.ABCMeta):
@@ -10,9 +10,9 @@ class DataSource(metaclass=abc.ABCMeta):
     """
     @property
     @abc.abstractmethod
-    def realtimekeywords(self) -> NartKeywords:
+    def realtimekeywords(self) -> NartData:
         """
         실시간 검색어 키워드 목록을 반환한다.
-        :return: NartKeywords. 실시간 검색어 키워드 목록이다.
+        :return: NartData. 실시간 검색어 키워드 목록이다.
         """
         pass

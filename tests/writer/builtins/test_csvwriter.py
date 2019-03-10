@@ -5,13 +5,13 @@ import os
 import csv
 import tempfile
 from datetime import datetime
-from nart.out.builtins.outcsvrepository import OutCsvRepository
-from nart.model.nartkeywords import NartKeywords
-from nart.model.nartkeyword import NartKeyword
+from nart.writer.builtins.csvwriter import CSVWriter
+from nart.model.nartdata import NartData
+from nart.model.nartitem import NartItem
 
 
 @pytest.fixture
-def outcsvrepo_fixture():
+def csvwriter_fixture():
     """
     csvrepo의 filepath를 생성하고, 테스트가 끝난 뒤 제거한다.
 
@@ -26,24 +26,24 @@ def outcsvrepo_fixture():
         os.remove(filepath)
 
 
-def test_outcsvrepository_success(outcsvrepo_fixture):
+def test_outcsvrepository_success(csvwriter_fixture):
     """
     OutCsvRepository의 성공 테스트이다.
 
     :param outcsvrepo_fixture: fixture이다.
     """
-    filepath = outcsvrepo_fixture
+    filepath = csvwriter_fixture
 
-    rank1 = NartKeyword(1, 'test1')
-    rank2 = NartKeyword(2, 'test2')
-    keywords = NartKeywords(datetime.now(), [rank1, rank2])
+    rank1 = NartItem(1, 'test1')
+    rank2 = NartItem(2, 'test2')
+    keywords = NartData(datetime.now(), [rank1, rank2])
 
-    outrepo = OutCsvRepository(outpath=filepath, append_if_exist=True)
-    outrepo.write(keywords)
+    writer = CSVWriter(path=filepath, append_if_exist=True)
+    writer.write(keywords)
 
-    assert os.path.exists(outrepo.outpath)
+    assert os.path.exists(writer.path)
 
-    with open(outrepo.outpath, mode='r', encoding='utf-8') as csvfile:
+    with open(writer.path, mode='r', encoding='utf-8') as csvfile:
         reader = csv.reader(csvfile, delimiter=',')
         reader_count = 0
 

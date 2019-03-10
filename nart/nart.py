@@ -4,7 +4,7 @@ import schedule
 import time
 from nart.datasource.datasource import DataSource
 from nart.datasource.builtins.htmlparsedatasource import HtmlParseDataSource
-from nart.out.outrepository import OutRepository
+from nart.writer.writer import Writer
 
 
 class Nart:
@@ -12,7 +12,7 @@ class Nart:
     정해진 스케쥴 단위로 네이버 실시간 검색어를 가져와서 outrepos에 출력해주는 서비스이다.
     """
 
-    def __init__(self, outrepos: [OutRepository], datasource: DataSource = None):
+    def __init__(self, outrepos: [Writer], datasource: DataSource = None):
         """
         :param outrepos: [OutRepository]. 실시간 검색어를 출력해줄 repository목록이다.
         :param datasource: DataSource. 실시간 검색어를 가져올 datasource이다.

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 
-class NartKeyword:
+class NartItem:
     """
     Naver realtime keyword의 반환값을 저장하는 클래스
     """
