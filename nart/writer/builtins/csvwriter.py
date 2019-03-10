@@ -25,13 +25,13 @@ class CSVWriter(Writer):
         self.delimiter = delimiter
 
     @classmethod
-    def _to_list_for_csv(cls, keywords: NartData):
+    def _to_list_for_csv(cls, data: NartData):
         """
         NartKeyword 리스트를 csv row 리스트로 변경해준다.
-        :param keywords: NartData. 추출한 실시간검색어 리스트이다.
+        :param data: NartData. 추출한 실시간검색어 리스트이다.
         :return: [str].
         """
-        return [keywords.dt.isoformat()] + list(map(lambda item: item.keyword, keywords.items))
+        return [data.dt.isoformat()] + list(map(lambda item: item.keyword, data.items))
 
     def write(self, data: NartData):
         """

@@ -36,7 +36,9 @@ class CSVReader(Reader):
             for row in reader:
                 data_list.append(self.get_data_from_csvrow(row))
 
-    def iter_read(self) -> NartData:
+        return data_list
+
+    def iter_read(self):
         with open(file=self.path, mode='r', encoding='utf-8') as csvfile:
             reader = csv.reader(csvfile, delimiter=self.delimiter)
             for row in reader:

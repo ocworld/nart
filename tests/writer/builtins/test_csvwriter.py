@@ -26,11 +26,11 @@ def csvwriter_fixture():
         os.remove(filepath)
 
 
-def test_outcsvrepository_success(csvwriter_fixture):
+def test_csvwriter_success(csvwriter_fixture):
     """
-    OutCsvRepository의 성공 테스트이다.
+    CSVWriter의 성공 테스트이다.
 
-    :param outcsvrepo_fixture: fixture이다.
+    :param csvwriter_fixture: fixture이다.
     """
     filepath = csvwriter_fixture
 

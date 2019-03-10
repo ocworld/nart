@@ -23,9 +23,9 @@ def stdoutwriter_fixture():
 
 def test_stdoutwriter_success(stdoutwriter_fixture):
     """
-    OutStdoutRepositoryd의 성공 테스트이다.
+    StdOutwriter의 성공 테스트이다.
 
-    :param outstdoutrepo_fixture: fixture이다.
+    :param stdoutwriter_fixture: fixture이다.
     """
     filepath = stdoutwriter_fixture
 
