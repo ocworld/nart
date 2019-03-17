@@ -26,14 +26,12 @@ You can define custom outrepositories and datasources by using inheriting OutRep
 
 # Console
 ```console
-usage: nart [-h] [-iv INTERVAL] [-csv CSVOUT] [-v] [-on] timeunit
+usage: nart [-h] [-u TIMEUNIT] [-iv INTERVAL] [-csv CSVOUT] [-v] [-on]
 
 NART needs arguments
 
-positional arguments:
-  timeunit              Input schedule time unit. (hour, min, or sec)
-
 optional arguments:
+  -u, --timeunit              Input schedule time unit. (hour, min, or sec)
   -h, --help            show this help message and exit
   -iv INTERVAL, --interval INTERVAL
                         Inverval time between collecting realtime keywords.
@@ -47,5 +45,5 @@ optional arguments:
 
 For example
 ```console
-foo@bar:~$ nart sec -csv /tmp/test.csv -v -iv 1
+foo@bar:~$ nart -u hour -csv /tmp/test.csv -v -iv 1
 ```

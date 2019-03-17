@@ -10,7 +10,7 @@ with open('LICENSE', mode='r', encoding='utf-8') as f:
 
 setup(
     name='nart',
-    version='1.0',
+    version='1.1.dev1',
     description='NART: Naver RealTime Keyword',
     long_description=readme,
     author='Keunhyun Oh',
@@ -23,14 +23,12 @@ setup(
         'requests==2.21.0',
         'schedule==0.6.0',
         'beautifulsoup4==4.7.1',
-        'python-crontab==2.3.6',
-        'schedule==0.6.0',
     ],
     setup_requires=[
-        'pytest-runner==4.4',
+        'pytest-runner',
     ],
     tests_require=[
-        'pytest==4.3.0',
+        'pytest',
     ],
     entry_points={
         'console_scripts': ['nart=nart.main:main'],
