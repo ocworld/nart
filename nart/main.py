@@ -10,8 +10,11 @@ from nart.datasource.builtins.htmlparsedatasource import HtmlParseDataSource
 
 
 def main():
+    default_timeunit = 'hour'
+
     parser = argparse.ArgumentParser(description='NART needs arguments')
-    parser.add_argument('timeunit', type=str, help='Input schedule time unit. (hour, min, or sec)')
+    parser.add_argument('-u', '--timeunit', type=str, default=default_timeunit,
+                        help='Input schedule time unit. (hour, min, or sec)')
     parser.add_argument('-iv', '--interval', type=int, default=1,
                         help='Inverval time between collecting realtime keywords. '
                              'Timeunit is based on timeunit')
@@ -38,7 +41,7 @@ def main():
     datasource = HtmlParseDataSource()
     nart = Nart(outrepos, datasource)
 
-    timeunit = args.timeunit
+    timeunit = args.timeunit if args.timeunit else default_timeunit
 
     if timeunit == 'hour' or timeunit == 'hours':
         nart.run_with_hour(interval=interval, start_on_the_hour=on_time)

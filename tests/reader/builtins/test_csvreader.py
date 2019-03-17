@@ -42,5 +42,3 @@ def test_csvreader_iter_read_success(get_reader_test_csv_path):
 
     assert len(data_list) == 2
 
-
-
