@@ -13,11 +13,11 @@ foo@bar:~$ pip install --upgrade nart
 # API
 ```python
 from nart.nart import Nart
-from nart.out.builtins.outcsvrepository import OutCsvRepository
+from nart.writer.builtins.csvwriter import CSVWriter
 
-outrepos = [OutCsvRepository(outpath='/tmp/test.csv')]
+outrepos = [CSVWriter(path='/tmp/test.csv')]
 nart = Nart(outrepos)
-nart.write_nart_to_repos()
+nart.write_nart()
 nart.run_with_hour(interval=1)
 
 ```
