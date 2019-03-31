@@ -3,6 +3,8 @@
 
 import argparse
 from nart.nart import Nart
+from nart.model.config import Config
+from nart.model.timeunit import Timeunit
 from nart.writer.writer import Writer
 from nart.writer.builtins.stdoutwriter import StdOutWriter
 from nart.writer.builtins.csvwriter import CSVWriter
@@ -10,14 +12,11 @@ from nart.datasource.builtins.htmlparsedatasource import HtmlParseDataSource
 
 
 def main():
-    default_timeunit = 'hour'
-
     parser = argparse.ArgumentParser(description='NART needs arguments')
-    parser.add_argument('-u', '--timeunit', type=str, default=default_timeunit,
-                        help='Input schedule time unit. (hour, min, or sec)')
-    parser.add_argument('-iv', '--interval', type=int, default=1,
-                        help='Inverval time between collecting realtime keywords. '
-                             'Timeunit is based on timeunit')
+    parser.add_argument('-f', '--file', type=str, help='configuration file path.')
+    parser.add_argument('-u', '--timeunit', type=str, help='Input schedule time unit. (hour, min, or sec)')
+    parser.add_argument('-iv', '--interval', type=int, help='Inverval time between collecting realtime keywords. '
+                                                            'Timeunit is based on timeunit')
     parser.add_argument('-csv', '--csvout', type=str, help='Set the csvfilepath, if you want to write csvfile')
     parser.add_argument('-v', '--verbose', action='store_true', help='Set the flag,'
                                                                      ' if you want for results to be printed')
@@ -26,29 +25,31 @@ def main():
 
     args = parser.parse_args()
 
-    outrepos: [Writer] = []
-    if args.verbose:
-        outrepos.append(StdOutWriter())
+    config = Config.from_file(args.file, encoding='utf-8') if args.file else None
+    config.use_stdoutwriter = True if args.verbose else config.use_stdoutwriter
+    config.use_csvwriter = True if args.verbose else config.use_csvwriter
+    config.start_on_time = True if args.startontime else config.start_on_time
+    config.interval = args.interval if args.interval else config.interval
+    config.timeunit = Timeunit.from_str(args.timeunit) if args.timeunit else config.timeunit
 
-    if args.csvout:
-        outrepos.append(CSVWriter(path=args.csvout))
+    out_repos: [Writer] = []
+    if config.use_stdoutwriter:
+        out_repos.append(StdOutWriter())
 
-    assert len(outrepos) > 0
+    if config.use_csvwriter:
+        out_repos.append(CSVWriter(config.csvwriter_outpath))
 
-    on_time = True if args.startontime else False
-    interval = args.interval
+    assert len(out_repos) > 0
 
     datasource = HtmlParseDataSource()
-    nart = Nart(outrepos, datasource)
+    nart = Nart(out_repos, datasource)
 
-    timeunit = args.timeunit if args.timeunit else default_timeunit
-
-    if timeunit == 'hour' or timeunit == 'hours':
-        nart.run_with_hour(interval=interval, start_on_the_hour=on_time)
-    elif timeunit == 'min' or timeunit == 'minute' or timeunit == 'minutes':
-        nart.run_with_min(interval=interval, start_on_the_min=on_time)
-    elif timeunit == 'sec' or timeunit == 'second' or timeunit == 'seconds':
-        nart.run_with_sec(interval=interval)
+    if config.timeunit == Timeunit.HOUR:
+        nart.run_with_hour(interval=config.interval, start_on_the_hour=config.start_on_time)
+    elif config.timeunit == Timeunit.MIN:
+        nart.run_with_min(interval=config.interval, start_on_the_min=config.start_on_time)
+    elif config.timeunit == Timeunit.SEC:
+        nart.run_with_sec(interval=config.interval)
 
 
 if __name__ == "__main__":
