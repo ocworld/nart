@@ -7,7 +7,8 @@ from nart.model.configkey import ConfigKey
 
 
 class Config:
-    def __init__(self, timeunit, interval, start_on_time, use_stdoutwriter, use_csvwriter, csvwriter_outpath):
+    def __init__(self, timeunit=None, interval=None, start_on_time=None, use_stdoutwriter=None, use_csvwriter=None,
+                 csvwriter_outpath=None):
         self.timeunit = timeunit
         self.interval = interval
         self.start_on_time = start_on_time

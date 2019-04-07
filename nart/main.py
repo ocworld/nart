@@ -25,9 +25,15 @@ def main():
 
     args = parser.parse_args()
 
-    config = Config.from_file(args.file, encoding='utf-8') if args.file else None
+    config = Config.from_file(args.file, encoding='utf-8') if args.file else Config()
+    config.use_stdoutwriter = config.use_stdoutwriter if config.use_stdoutwriter else False
+    config.use_csvwriter = config.use_csvwriter if config.use_csvwriter else False
+    config.start_on_time = config.start_on_time if config.start_on_time else False
+    config.interval = config.interval if config.interval else 1
+    config.timeunit = config.timeunit if config.timeunit else Timeunit.MIN
+
     config.use_stdoutwriter = True if args.verbose else config.use_stdoutwriter
-    config.use_csvwriter = True if args.verbose else config.use_csvwriter
+    config.use_csvwriter = True if args.csvout else config.use_csvwriter
     config.start_on_time = True if args.startontime else config.start_on_time
     config.interval = args.interval if args.interval else config.interval
     config.timeunit = Timeunit.from_str(args.timeunit) if args.timeunit else config.timeunit
