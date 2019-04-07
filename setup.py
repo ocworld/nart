@@ -20,9 +20,10 @@ setup(
     packages=find_packages(exclude=('tests', 'docs')),
     platforms=['any'],
     install_requires=[
-        'requests==2.21.0',
-        'schedule==0.6.0',
-        'beautifulsoup4==4.7.1',
+        'requests>=2.21.0',
+        'schedule>=0.6.0',
+        'beautifulsoup4>=4.7.1',
+        'PyYAML>=5.1',
     ],
     setup_requires=[
         'pytest-runner',
